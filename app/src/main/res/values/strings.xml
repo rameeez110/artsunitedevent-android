@@ -1,0 +1,28 @@
+<resources>
+	
+	<string name="app_name">Arts United Event Forms</string>
+	
+	<string name="auc_event_report">AUC EVENT REPORT</string>
+	<string name="al_event_report">AL EVENT REPORT</string>
+	<string name="auc_desk_monitor">AUC DESK MONITOR</string>
+	<string name="al_desk_monitor">AL DESK MONITOR</string>
+	<string name="auc_tech">AUC TECH</string>
+	<string name="al_tech">AL TECH</string>
+	
+	<string name="auc_event_report_txt">ARTS UNITED CENTER EVENT REPORT</string>
+	<string name="al_event_report_txt">ARTSLAB EVENT REPORT</string>
+	<string name="auc_desk_monitor_txt">ARTS UNITED CENTER DESK MONITOR</string>
+	<string name="al_desk_monitor_txt">ARTSLAB DESK MONITOR</string>
+	<string name="auc_tech_txt">ARST UNITED CENTER TECH</string>
+	<string name="al_tech_txt">ARTSLAB TECH</string>
+	<string name="submit">Submit</string>
+	
+	<string name="title_dashboard">Select Form</string>
+	<string name="title_form1">Form 1</string>
+	<string name="title_activity_pdf">PdfActivity</string>
+	
+	<string name="are_you_sure">Are you sure?</string>
+	<string name="yes">yes</string>
+	<string name="cancel">cancel</string>
+
+</resources>

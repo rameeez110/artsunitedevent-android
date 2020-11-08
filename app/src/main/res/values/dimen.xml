@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<dimen name="_0sdp">0dp</dimen>
+	<dimen name="section_title_padding">@dimen/_10sdp</dimen>
+	<dimen name="dashboard_button_size">@dimen/_100sdp</dimen>
+	
+	<dimen name="nav_animation_time">500</dimen>
+	
+</resources>

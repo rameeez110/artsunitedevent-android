@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/black"
+	tools:context=".views.ui.DashboardFragment">
+	
+	<LinearLayout
+		android:id="@+id/auc_report_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:layout_marginTop="@dimen/_10sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AUC_REPORT"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toStartOf="@+id/al_report_btn"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_event_report"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_event_report_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/al_report_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AL_REPORT"
+		app:layout_constraintBottom_toBottomOf="@+id/auc_report_btn"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/auc_report_btn"
+		app:layout_constraintTop_toTopOf="@+id/auc_report_btn">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_event_report"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_event_report_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/auc_monitor_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:layout_marginTop="@dimen/_10sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AUC_MONITOR"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toStartOf="@+id/al_report_btn"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/auc_report_btn"
+		app:layout_goneMarginTop="@dimen/_10sdp">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_desk_monitor"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_desk_monitor_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/al_monitor_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AL_MONITOR"
+		app:layout_constraintBottom_toBottomOf="@+id/auc_monitor_btn"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/auc_report_btn"
+		app:layout_constraintTop_toTopOf="@+id/auc_monitor_btn">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_desk_monitor"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_desk_monitor_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/auc_tech_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:layout_marginTop="@dimen/_10sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AUC_TECH"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toStartOf="@+id/al_report_btn"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/auc_monitor_btn">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_tech"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/auc_tech_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/al_tech_btn"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_140sdp"
+		android:background="@drawable/shape_button_bg"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:tag="AL_TECH"
+		app:layout_constraintBottom_toBottomOf="@+id/auc_tech_btn"
+		app:layout_constraintDimensionRatio="w,1:1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/auc_report_btn"
+		app:layout_constraintTop_toTopOf="@+id/auc_tech_btn">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_tech"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_11sdp"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginStart="@dimen/_20sdp"
+			android:layout_marginEnd="@dimen/_20sdp"
+			android:gravity="center"
+			android:text="@string/al_tech_txt"
+			android:textColor="@android:color/white"
+			android:textSize="@dimen/_9sdp" />
+	
+	</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

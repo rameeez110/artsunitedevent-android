@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/dashboardFragment">
+	
+	<fragment
+		android:id="@+id/dashboardFragment"
+		android:name="com.example.artsunitedeventforms.views.ui.DashboardFragment"
+		android:label="@string/title_dashboard"
+		tools:layout="@layout/fragment_dashboard" >
+		
+		<action
+			android:id="@+id/action_dashboardFragment_to_questionFragment"
+			app:destination="@id/questionFragment">
+			
+			<argument
+				android:name="formName"
+				app:argType="com.example.artsunitedeventforms.data.enums.Forms"/>
+			
+		</action>
+	
+	</fragment>
+	
+	<fragment
+		android:id="@+id/questionFragment"
+		android:name="com.example.artsunitedeventforms.views.ui.question.QuestionFragment"
+		tools:layout="@layout/fragment_question">
+		
+		<argument
+			android:name="formName"
+			android:defaultValue="AUC_REPORT"
+			app:argType="com.example.artsunitedeventforms.data.enums.Forms"
+			app:nullable="false"/>
+		
+		<action
+			android:id="@+id/action_questionFragment_to_pdfFragment"
+			app:destination="@id/pdfFragment">
+			
+			<argument
+				android:name="fileUri"
+				android:defaultValue="@null"
+				app:argType="android.net.Uri"
+				app:nullable="true"/>
+			
+			<argument
+				android:name="formName"
+				app:argType="com.example.artsunitedeventforms.data.enums.Forms"/>
+			
+		</action>
+	
+	</fragment>
+	
+	<fragment
+		android:id="@+id/pdfFragment"
+		android:name="com.example.artsunitedeventforms.views.ui.pdf.PdfFragment"
+		android:label="Pdf" >
+		
+		<argument
+			android:name="fileUri"
+			android:defaultValue="@null"
+			app:argType="android.net.Uri"
+			app:nullable="true"/>
+		
+		<argument
+			android:name="formName"
+			android:defaultValue="AUC_REPORT"
+			app:argType="com.example.artsunitedeventforms.data.enums.Forms"
+			app:nullable="false"/>
+		
+	</fragment>
+
+</navigation>

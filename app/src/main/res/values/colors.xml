@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="colorPrimary">#444444</color>
+	<color name="colorPrimaryDark">#444444</color>
+	<color name="colorAccent">#0055BC</color>
+	
+	<color name="colorSectionHeader">#EEEEEE</color>
+	<color name="colorItemDivider">#E2E2E2</color>
+	<color name="dashboardButtonColor">#222</color>
+	
+	<color name="dialogBackground">#BBB</color>
+	
+</resources>

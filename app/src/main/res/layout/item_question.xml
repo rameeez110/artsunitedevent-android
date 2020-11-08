@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<data>
+		
+		<import type="com.example.artsunitedeventforms.data.enums.QuestionType" />
+		<import type="android.view.View" />
+		<import type="android.text.InputType" />
+		<import type="android.text.TextUtils" />
+		
+		<variable
+			name="question"
+			type="com.example.artsunitedeventforms.data.local.Question" />
+		
+		<variable
+			name="questionsAdapter"
+			type="com.example.artsunitedeventforms.views.adapters.QuestionsAdapter" />
+		
+		<variable
+			name="parentPosition"
+			type="java.lang.Integer" />
+		
+		<variable
+			name="childPosition"
+			type="java.lang.Integer" />
+		
+		<variable
+			name="childSize"
+			type="java.lang.Integer" />
+	
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingStart="@dimen/_10sdp"
+		android:paddingTop="@dimen/_10sdp"
+		android:paddingEnd="@dimen/_10sdp"
+		android:clickable="@{question.type==QuestionType.DATE||question.type==QuestionType.TIME}"
+		android:onClick="@{()->questionsAdapter.showDateTimeDialog(question.type,parentPosition,childPosition)}">
+		
+		<TextView
+			style="@style/QuestionFont"
+			android:id="@+id/item_question"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="@{question.question}"
+			app:layout_constraintEnd_toStartOf="@+id/item_quick_answer_layout"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/item_quick_answer_layout"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/_10sdp"
+			android:visibility="@{question.type==QuestionType.DATE||question.type==QuestionType.TIME||question.type==QuestionType.BOOLEAN_CHECK||question.type==QuestionType.BOOLEAN_SWITCH?View.VISIBLE:View.GONE, default = gone}"
+			app:layout_constraintBottom_toBottomOf="@id/item_question"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/item_question"
+			app:layout_constraintTop_toTopOf="@id/item_question">
+			
+			<TextView
+				style="@style/AnswerFont"
+				android:id="@+id/item_date_time_answer"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/_5sdp"
+				android:text="@={question.answer.date}"
+				android:visibility="@{question.type==QuestionType.TIME?View.VISIBLE : View.GONE}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<CheckBox
+				android:id="@+id/item_checkBox_answer"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="@={question.answer.bool}"
+				android:visibility="@{question.type==QuestionType.BOOLEAN_CHECK?View.VISIBLE : View.GONE, default = gone}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<androidx.appcompat.widget.SwitchCompat
+				android:id="@+id/item_switch_answer"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="@={question.answer.bool}"
+				android:visibility="@{question.type==QuestionType.BOOLEAN_SWITCH?View.VISIBLE : View.GONE, default = gone}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<ImageButton
+				android:layout_width="@dimen/_30sdp"
+				android:layout_height="@dimen/_30sdp"
+				android:background="@android:color/transparent"
+				android:clickable="true"
+				android:focusable="true"
+				android:onClick="@{()->questionsAdapter.showDateTimeDialog(question.type,parentPosition,childPosition)}"
+				android:padding="@dimen/_5sdp"
+				android:src="@drawable/ic_right_arrow"
+				android:visibility="@{question.type==QuestionType.TIME&amp;&amp;TextUtils.isEmpty(question.answer.date)?View.VISIBLE : View.GONE}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+		
+		<EditText
+			style="@style/AnswerFont"
+			android:id="@+id/item_text_answer"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_10sdp"
+			android:background="@null"
+			android:inputType="@{question.type==QuestionType.NUMBER?InputType.TYPE_CLASS_NUMBER : InputType.TYPE_CLASS_TEXT}"
+			android:text="@={question.answer.text}"
+			android:visibility="@{question.type==QuestionType.TEXT|| question.type==QuestionType.NUMBER?View.VISIBLE : View.GONE}"
+			app:layout_constraintBottom_toTopOf="@+id/item_divider"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/item_question" />
+<!--			android:visibility="@{question.type==QuestionType.TEXT|| question.type==QuestionType.NUMBER?View.VISIBLE : View.GONE}"-->
+		
+		<EditText
+			style="@style/AnswerFont"
+			android:id="@+id/item_multiline_text_answer"
+			android:layout_width="0dp"
+			android:layout_height="@dimen/_60sdp"
+			android:layout_marginTop="@dimen/_10sdp"
+			android:background="@null"
+			android:gravity="top"
+			android:inputType="textMultiLine"
+			android:padding="@dimen/_5sdp"
+			android:text="@={question.answer.text}"
+			android:visibility="@{question.type==QuestionType.MULTILINE_TEXT?View.VISIBLE : View.GONE}"
+			app:layout_constraintBottom_toTopOf="@+id/item_divider"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/item_question" />
+<!--			android:visibility="@{question.type==QuestionType.MULTILINE_TEXT?View.VISIBLE : View.GONE}"-->
+		
+		<View
+			android:id="@+id/item_divider"
+			android:layout_width="0dp"
+			android:layout_height="@dimen/_1sdp"
+			android:layout_marginStart="@dimen/_5sdp"
+			android:layout_marginTop="@dimen/_5sdp"
+			android:layout_marginEnd="@dimen/_5sdp"
+			android:background="@color/colorItemDivider"
+			android:visibility="@{childSize-1 == childPosition ? View.GONE : View.VISIBLE}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/barrier" />
+		
+		<androidx.constraintlayout.widget.Barrier
+			android:id="@+id/barrier"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:barrierDirection="bottom"
+			app:constraint_referenced_ids="item_multiline_text_answer,item_text_answer
+					,item_question,item_quick_answer_layout" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

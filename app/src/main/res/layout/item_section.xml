@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<data>
+		
+		<import type="android.text.TextUtils"/>
+		<import type="android.view.View" />
+		
+		<variable
+			name="header"
+			type="com.example.artsunitedeventforms.data.local.SectionedQuestions" />
+		
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/section_title_padding"
+		android:background="@color/colorSectionHeader">
+<!--		app:binded_layout_height="@{TextUtils.isEmpty(header.sectionTitle)?@dimen/_0sdp:-1}">-->
+<!--		android:padding="@{TextUtils.isEmpty(header.sectionTitle)?@dimen/_0sdp:@dimen/section_title_padding}"-->
+		
+		<TextView
+			android:id="@+id/item_question_section_txt"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_5sdp"
+			android:fontFamily="@font/trenda_regular"
+			android:visibility="@{TextUtils.isEmpty(header.sectionTitle)?View.GONE:View.VISIBLE}"
+			android:text="@={header.sectionTitle}"
+			app:layout_constraintHorizontal_bias="0"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+	
+</layout>
