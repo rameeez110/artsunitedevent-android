@@ -6,6 +6,7 @@
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
 		<item name="textAllCaps">false</item>
+		<item name="snackbarStyle">@style/AppTheme.SnackBarStyle</item>
 		
 	</style>
 	
@@ -19,6 +20,17 @@
 		<item name="android:textSize">@dimen/_11ssp</item>
 		<item name="android:fontFamily">@font/trenda_regular</item>
 		<item name="android:textColor">@android:color/black</item>
+	</style>
+	
+	<style name="TermsAndConditions">
+		<item name="android:textSize">@dimen/_12ssp</item>
+		<item name="android:fontFamily">@font/trenda_black</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="textAllCaps">true</item>
+	</style>
+	
+	<style name="AppTheme.SnackBarStyle" parent="Widget.Design.Snackbar">
+		<item name="android:layout_margin">@dimen/_10sdp</item>
 	</style>
 	
 </resources>

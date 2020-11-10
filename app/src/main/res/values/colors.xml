@@ -8,6 +8,10 @@
 	<color name="colorItemDivider">#E2E2E2</color>
 	<color name="dashboardButtonColor">#222</color>
 	
+	<color name="nextButtonColor">#FF5100</color>
+	
+	<color name="snackBarBGColor">#D0D0D0</color>
+	
 	<color name="dialogBackground">#BBB</color>
 	
 </resources>

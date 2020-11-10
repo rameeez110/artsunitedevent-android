@@ -1,6 +1,5 @@
 package com.example.artsunitedeventforms.views.ui.question;
 
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.print.PDFPrint;
@@ -132,7 +131,7 @@ public class QuestionFragment extends Fragment {
                                 QuestionFragmentDirections.actionQuestionFragmentToPdfFragment(mViewModel.getArgs().getFormName());
                         action.setFileUri(pdfUri);
                         
-                        navController.navigate(action, Utils.getDefaultNavOptions());
+                        navController.navigate(action, Utils.getDefaultNavOptions(0, false));
                     }
                     
                     @Override
