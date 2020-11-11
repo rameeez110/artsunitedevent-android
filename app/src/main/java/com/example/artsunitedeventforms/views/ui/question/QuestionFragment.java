@@ -80,15 +80,15 @@ public class QuestionFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         
         switch (item.getItemId()) {
-            case android.R.id.home:
-                navController.navigateUp();
-                break;
+            //case android.R.id.home:
+            //    navController.popBackStack(R.id.dashboardFragment, false);
+            //    break;
             
             case R.id.menu_submit:
 	            showConfirmationDialog();
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
     
     public void setListeners() {

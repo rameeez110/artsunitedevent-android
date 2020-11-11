@@ -48,7 +48,7 @@ public class TermsConditionFragment extends Fragment {
             if (binding.termsCondtionSwitch.isChecked()) {
                 Utils.saveTermsConditionAccept(getContext(), binding.termsCondtionSwitch.isChecked());
     
-                int destination = R.id.action_termsConditionFragment_to_dashboardFragment;
+                int destination = R.id.dashboardFragment;
                 navController.navigate(destination, null, Utils.getDefaultNavOptions(R.id.termsConditionFragment, true));
                 
                 if (snackbar !=null)

@@ -76,7 +76,7 @@ public class PdfFragment extends Fragment {
 	
 	public Intent getEmailIntent() {
 		String mailTo = "";
-		String ccAddress = "test@test.com";
+		String ccAddress = mViewModel.getArgs().getFormName().getEmail();
 		Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("mailto:"+mailTo));
 		intent.putExtra(Intent.EXTRA_SUBJECT, mViewModel.getArgs().getFormName().getTitle());
 		intent.putExtra(Intent.EXTRA_TEXT,

@@ -42,9 +42,9 @@ public class SplashFragment extends Fragment {
             
             int destination;
             if (Utils.getTermsConditionAccept(getContext()))
-                destination = R.id.action_splashFragment_to_dashboardFragment;
+                destination = R.id.dashboardFragment;
             else
-                destination = R.id.action_splashFragment_to_termsConditionFragment;
+                destination = R.id.termsConditionFragment;
             
             navController.navigate(destination, null, Utils.getDefaultNavOptions(R.id.splashFragment, true));
         }, 2000);

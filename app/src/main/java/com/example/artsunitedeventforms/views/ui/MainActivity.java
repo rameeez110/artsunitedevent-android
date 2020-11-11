@@ -55,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
 	
 	@Override
 	public boolean onSupportNavigateUp() {
-		return NavigationUI.navigateUp(navController, appBarConfiguration)
-				|| super.onSupportNavigateUp();
+		if (!NavigationUI.navigateUp(navController, appBarConfiguration))
+			finish();
+		return true;
 	}
 	
 	@Override
