@@ -249,8 +249,10 @@ public class FormManager {
 		questions.add(new Question("Chairs Pushed In", QuestionType.BOOLEAN_CHECK));
 		questions.add(new Question("Large Trash Picked Up", QuestionType.BOOLEAN_CHECK));
 		questions.add(new Question("Did You Shovel Or Salt The Sidewalk", QuestionType.BOOLEAN_CHECK));
-		sectionedQuestions.add(new SectionedQuestions(questions, "Shut Down Checklist"));
-		sectionedQuestions.add(new SectionedQuestions(questions, "Lobby"));
+		sectionedQuestions.add(new SectionedQuestions(questions, "Shut Down Checklist\nLobby"));
+		
+		//questions = new ArrayList<>();
+		//sectionedQuestions.add(new SectionedQuestions(questions, "Lobby"));
 		
 		questions = new ArrayList<>();
 		questions.add(new Question("Northeast Lobby Doors (4)", QuestionType.BOOLEAN_CHECK));
@@ -586,7 +588,7 @@ public class FormManager {
 	
 	public static Question getPdfIncludedField(){
 		
-		String date = Utils.getCurrentDate("hh:mm:ss");
+		String date = Utils.getCurrentDate("hh:mm a");
 		
 		Question question = new Question("End Time", QuestionType.AUTO_GEN_DATE);
 		Answer answer = new Answer();

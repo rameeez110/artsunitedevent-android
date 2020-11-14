@@ -48,6 +48,39 @@ public class Utils {
         return date;
     }
     
+    public static String getFormatedTime(Integer hours, Integer minutes) {
+        
+        String timeSet;
+        if (hours > 12) {
+            hours -= 12;
+            timeSet = "PM";
+        }
+        else if (hours == 0) {
+            hours += 12;
+            timeSet = "AM";
+        }
+        else if (hours == 12) {
+            timeSet = "PM";
+        }
+        else {
+            timeSet = "AM";
+        }
+        
+        String min = "";
+        if (minutes < 10)
+            min = "0" + minutes;
+        else
+            min = String.valueOf(minutes);
+        
+        // Append in a StringBuilder
+        String aTime = String.format("%2d:%02d %s", hours.intValue(),
+                Integer.valueOf(min), timeSet);
+        //String aTime = new StringBuilder().append(hours).append(':')
+        //                       .append(min).append(" ").append(timeSet).toString();
+        
+        return aTime;
+    }
+    
     public static String getAnswerFromType(Question question, Answer answer) {
         
         switch (question.getType()) {
@@ -91,7 +124,7 @@ public class Utils {
         snackbar = Snackbar.make(activity.findViewById(android.R.id.content).getRootView(), message, Snackbar.LENGTH_LONG);
         TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
         
-        snackbar.getView().setBackgroundColor(activity.getResources().getColor(R.color.snackBarBGColor,null));
+        snackbar.getView().setBackgroundColor(activity.getResources().getColor(R.color.snackBarBGColor, null));
         textView.setTextColor(Color.BLACK);
         
         snackbar.show();
