@@ -24,9 +24,12 @@ public class PdfHelper {
 	
 	public static File createFile(Context context) {
 		
-		FileManager.getInstance().cleanTempFolder(context);
-		final File savedPDFFile = FileManager.getInstance().createTempFile(context, "pdf", false);
-		return savedPDFFile;
+		//FileManager.getInstance().cleanTempFolder(context);
+		//final File savedPDFFile = FileManager.getInstance().createTempFile(context, "pdf", false);
+		File file = new File(context.getExternalFilesDir("formDocs").getPath(),
+				"formdata.pdf");
+		
+		return file;
 	}
 	
 	

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.artsunitedeventforms.BuildConfig;
 import com.example.artsunitedeventforms.R;
 import com.example.artsunitedeventforms.Utils.DialogUtils;
 import com.example.artsunitedeventforms.Utils.FormManager;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -118,15 +120,17 @@ public class QuestionFragment extends Fragment {
         ArrayList<Question> questions = mViewModel.getAllQuestions();
         questions.add(FormManager.getPdfIncludedField());
         
-        File pdfFile = PdfHelper.createFile(getContext());
-        
-        PDFUtil.generatePDFFromHTML(getContext(), pdfFile,
+        PDFUtil.generatePDFFromHTML(getContext(), PdfHelper.createFile(getContext()),
                 PdfHelper.getHtmlString(title, questions),
                 new PDFPrint.OnPDFPrintListener() {
                     @Override
                     public void onSuccess(File file) {
                         
-                        Uri pdfUri = Uri.fromFile(pdfFile);
+                        //Uri pdfUri = Uri.fromFile(pdfFile);
+                        //
+                        Uri pdfUri = FileProvider.getUriForFile(getContext(),
+                                BuildConfig.APPLICATION_ID+".fileprovider", file);
+                        
                         QuestionFragmentDirections.ActionQuestionFragmentToPdfFragment action =
                                 QuestionFragmentDirections.actionQuestionFragmentToPdfFragment(mViewModel.getArgs().getFormName());
                         action.setFileUri(pdfUri);
