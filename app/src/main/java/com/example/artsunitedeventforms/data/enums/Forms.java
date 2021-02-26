@@ -2,10 +2,10 @@ package com.example.artsunitedeventforms.data.enums;
 
 public enum Forms {
 	
-	AUC_REPORT("Auc Event Report", "Arts United Center Event Report","operations@artsunited"),
-	AL_REPORT("Al Event Report", "ArtsLab/Auer Center Event Report","operations@artsunited"),
-	AUC_MONITOR("Auc Desk Monitor", "Arts United Center Desk Monitor","operations@artsunited"),
-	AL_MONITOR("Al Desk Monitor", "ArtsLab/Auer Center Desk monitor","operations@artsunited"),
+	AUC_REPORT("Auc Event Report", "Arts United Center Event Report","operations@artsunited.org"),
+	AL_REPORT("Al Event Report", "ArtsLab/Auer Center Event Report","operations@artsunited.org"),
+	AUC_MONITOR("Auc Desk Monitor", "Arts United Center Desk Monitor","operations@artsunited.org"),
+	AL_MONITOR("Al Desk Monitor", "ArtsLab/Auer Center Desk monitor","operations@artsunited.org"),
 	AUC_TECH("Auc Tech", "Arts United Center Tech Report","tech@artsunited.org"),
 	AL_TECH("Al Tech", "ArtsLab/Auer Center Tech Report","tech@artsunited.org");
 	
