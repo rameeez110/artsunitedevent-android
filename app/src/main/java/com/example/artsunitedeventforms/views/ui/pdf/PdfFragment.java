@@ -1,19 +1,25 @@
 package com.example.artsunitedeventforms.views.ui.pdf;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.artsunitedeventforms.R;
 import com.example.artsunitedeventforms.databinding.FragmentPdfBinding;
 import com.example.artsunitedeventforms.views.ui.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,7 +40,7 @@ public class PdfFragment extends Fragment {
     Runnable emailRunnable = () -> {
         ((MainActivity) requireActivity()).hideLoader();
         
-        startActivity(Intent.createChooser(getEmailIntent(), "Choose an Email client :"));
+        openEmailApp();
     };
     
     @Nullable
@@ -78,15 +84,9 @@ public class PdfFragment extends Fragment {
     
     public Intent getEmailIntent() {
         
-        String mailTo = "";
-        String ccAddress = mViewModel.getArgs().getFormName().getEmail();
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + mailTo));
-        intent.putExtra(Intent.EXTRA_SUBJECT, mViewModel.getArgs().getFormName().getTitle());
-        intent.putExtra(Intent.EXTRA_TEXT,
-                "This is a PDF exported from the data you have entered.");
-        intent.putExtra(Intent.EXTRA_CC, new String[]{ccAddress});
-        intent.putExtra(Intent.EXTRA_STREAM, mViewModel.getArgs().getFileUri());
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Intent intent = new Intent();
+        setEmailIntentData(intent);
+        intent.setType("application/pdf");
         
         List<ResolveInfo> resInfoList =
                 getContext().getPackageManager()
@@ -99,5 +99,59 @@ public class PdfFragment extends Fragment {
         }
         
         return intent;
+    }
+    
+    private void openEmailApp() {
+        
+        List<Intent> emailAppLauncherIntents = new ArrayList<>();
+        
+        Intent emailAppIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"));
+        
+        PackageManager packageManager = getContext().getPackageManager();
+        
+        List<ResolveInfo> emailApps = packageManager.queryIntentActivities(emailAppIntent,
+                PackageManager.MATCH_ALL);
+        
+        if (emailApps == null || emailApps.size() == 0) {
+    
+            startActivity(Intent.createChooser(getEmailIntent(), "Choose an Email client :"));
+        }
+        else {
+            
+            for (ResolveInfo resolveInfo : emailApps) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                String name = resolveInfo.activityInfo.name;
+                
+                getContext().grantUriPermission(packageName, mViewModel.getArgs().getFileUri(),
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                
+                Intent launchIntent = packageManager.getLaunchIntentForPackage(packageName);
+                launchIntent.setAction(Intent.ACTION_SEND);
+                setEmailIntentData(launchIntent);
+                
+                launchIntent.setComponent(new ComponentName(packageName, name));
+                
+                emailAppLauncherIntents.add(launchIntent);
+            }
+            
+            Intent chooserIntent = Intent.createChooser(new Intent(), "Select email app:");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, emailAppLauncherIntents.toArray(
+                    new Parcelable[emailAppLauncherIntents.size()]));
+            startActivity(chooserIntent);
+        }
+    }
+    
+    public void setEmailIntentData(Intent intent) {
+        
+        String message = "This is a PDF exported from the data you have entered.";
+        String ccAddress = mViewModel.getArgs().getFormName().getEmail();
+        
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_SUBJECT, mViewModel.getArgs().getFormName().getTitle());
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra(Intent.EXTRA_STREAM, mViewModel.getArgs().getFileUri());
+        intent.putExtra(Intent.EXTRA_EMAIL, "");
+        intent.putExtra(Intent.EXTRA_CC, new String[]{ccAddress});
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 }
