@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +41,10 @@ public class PdfFragment extends Fragment {
     Handler emailHandler = new Handler(Looper.getMainLooper());
     Runnable emailRunnable = () -> {
         ((MainActivity) requireActivity()).hideLoader();
-        
-        openEmailApp();
+    
+        //Log.d("d", "PdfFragmentLogData->getEmailIntent(): "+mViewModel.getArgs().getFileUri());
+        //openEmailApp();
+        sendEmail();
     };
     
     @Nullable
@@ -86,7 +90,7 @@ public class PdfFragment extends Fragment {
         
         Intent intent = new Intent();
         setEmailIntentData(intent);
-        intent.setType("application/pdf");
+        //intent.setType("application/pdf");
         
         List<ResolveInfo> resInfoList =
                 getContext().getPackageManager()
@@ -95,7 +99,7 @@ public class PdfFragment extends Fragment {
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
             getContext().grantUriPermission(packageName, mViewModel.getArgs().getFileUri(),
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
         }
         
         return intent;
@@ -114,7 +118,9 @@ public class PdfFragment extends Fragment {
         
         if (emailApps == null || emailApps.size() == 0) {
     
-            startActivity(Intent.createChooser(getEmailIntent(), "Choose an Email client :"));
+            Intent chooser = Intent.createChooser(getEmailIntent(), "Choose an Email client :");
+            chooser.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            startActivity(chooser);
         }
         else {
             
@@ -137,6 +143,7 @@ public class PdfFragment extends Fragment {
             Intent chooserIntent = Intent.createChooser(new Intent(), "Select email app:");
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, emailAppLauncherIntents.toArray(
                     new Parcelable[emailAppLauncherIntents.size()]));
+            chooserIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
             startActivity(chooserIntent);
         }
     }
@@ -153,5 +160,22 @@ public class PdfFragment extends Fragment {
         intent.putExtra(Intent.EXTRA_EMAIL, "");
         intent.putExtra(Intent.EXTRA_CC, new String[]{ccAddress});
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    }
+    
+    public void sendEmail() {
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().build());
+        Intent emailIntent = new Intent();
+        String message = "This is a PDF exported from the data you have entered.";
+        String ccAddress = mViewModel.getArgs().getFormName().getEmail();
+    
+        emailIntent.setAction(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, mViewModel.getArgs().getFormName().getTitle());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, mViewModel.getArgs().getFileUri());
+        emailIntent.putExtra(Intent.EXTRA_CC, new String[]{ccAddress});
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    
+        startActivity(Intent.createChooser(emailIntent, null));
     }
 }

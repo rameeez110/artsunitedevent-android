@@ -1,23 +1,9 @@
 package com.example.artsunitedeventforms.Utils;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.pdf.PdfRenderer;
-import android.os.ParcelFileDescriptor;
-import android.util.DisplayMetrics;
-import android.view.View;
-
 import com.example.artsunitedeventforms.data.local.Question;
-import com.example.artsunitedeventforms.views.ui.MainActivity;
-import com.github.barteksc.pdfviewer.util.Util;
-import com.tejpratapsingh.pdfcreator.utils.FileManager;
-
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 
 
 public class PdfHelper {
@@ -26,12 +12,13 @@ public class PdfHelper {
 		
 		//FileManager.getInstance().cleanTempFolder(context);
 		//final File savedPDFFile = FileManager.getInstance().createTempFile(context, "pdf", false);
-		File file = new File(context.getExternalFilesDir("formDocs").getPath(),
-				"formdata.pdf");
+		File file = new File(context.getFilesDir().getAbsoluteFile(), "formdata.pdf");
+		
+		if (file.exists())
+			file.delete();
 		
 		return file;
 	}
-	
 	
 	public static String getHtmlString(String title, ArrayList<Question> questions) {
 		
